@@ -18,10 +18,10 @@ export const StyledJobItem = styled.div`
   transition: 0.3s;
   padding: 10px 16px;
   width: 300px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px 10px;
   color: white;
-  background: #2f79fa;
+  background: ${(props) => props.theme.colors.mainBlue};
   line-height: 1.6;
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -32,9 +32,15 @@ export const $T400 = styled.div`
   font-weight: 400;
 `;
 
+export const $AlignContainer = styled.div`
+  vertical-align: bottom;
+  display: flex;
+`;
+
 export const $T700 = styled.div`
   font-weight: 700;
+  font-size: 120%;
 `;
-export const $TItalic = styled.div`
+export const $TItalic = styled.p`
   font-style: italic;
 `;

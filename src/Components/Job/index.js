@@ -1,10 +1,11 @@
 import React from "react";
 import { StyledJobsContainer } from "./style";
 import JobItem from "./JobItem";
+import Spinner from "../Spinner/Spinner";
 
 const JobItems = ({ items, isLoading }) => {
   return isLoading ? (
-    <p>Loading...</p>
+    <Spinner />
   ) : (
     <StyledJobsContainer>
       {items.map((item) => (

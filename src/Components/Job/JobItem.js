@@ -1,14 +1,17 @@
 import React from "react";
-import { StyledJobItem, $T400, $T700, $TItalic } from "./style";
-import { Twemoji } from "react-emoji-render";
+import { StyledJobItem, $T700, $TItalic, $AlignContainer } from "./style";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import { Grid } from "@material-ui/core";
 
 const JobItem = ({ item }) => {
   return (
     <StyledJobItem>
-      <$T400>
-        <Twemoji text="📅 " />
-        {item.start} - {item.end}
-      </$T400>
+      <$AlignContainer>
+        <Grid container direction="row" alignItems="center">
+          <DateRangeIcon fontSize="small" />
+          {item.start} - {item.end}
+        </Grid>
+      </$AlignContainer>
       <$T700>{item.name}</$T700>
       {item.position} <br />
       <$TItalic>{item.info}</$TItalic>
