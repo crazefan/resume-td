@@ -1,12 +1,17 @@
 import React from "react";
-import { StyledJobItem, StyledJobsContainer } from "./style";
+import { StyledJobsContainer } from "./style";
+import JobItem from "./JobItem";
 
-const JobItem = () => {
-  return (
+const JobItems = ({ items, isLoading }) => {
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
     <StyledJobsContainer>
-      <StyledJobItem>Hello</StyledJobItem>
+      {items.map((item) => (
+        <JobItem key={item.id} item={item}></JobItem>
+      ))}
     </StyledJobsContainer>
   );
 };
 
-export default JobItem;
+export default JobItems;
