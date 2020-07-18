@@ -4,6 +4,7 @@ import axios from "axios";
 import JobItems from "./Components/Job/index";
 import CenteredContainer from "./Containers/CenteredContainer";
 import Theme from "./Theme";
+import { Container, Typography } from "@material-ui/core";
 
 const App = () => {
   const [jobs, setJobs] = useState([]);
@@ -28,9 +29,11 @@ const App = () => {
   return (
     <Theme>
       <CenteredContainer>
-        <h1>Timur Dolgopolov</h1>
+        <Typography>Timur Dolgopolov</Typography>
       </CenteredContainer>
-      <JobItems items={jobs} isLoading={isLoading} />
+      <Container>
+        <JobItems items={jobs} isLoading={isLoading} />
+      </Container>
     </Theme>
   );
 };

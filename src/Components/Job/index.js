@@ -1,17 +1,24 @@
 import React from "react";
-import { StyledJobsContainer } from "./style";
-import JobItem from "./JobItem";
 import Spinner from "../Spinner/Spinner";
+import JobCard from "./Job";
+import { Grid } from "@material-ui/core";
 
 const JobItems = ({ items, isLoading }) => {
   return isLoading ? (
     <Spinner />
   ) : (
-    <StyledJobsContainer>
+    <Grid
+      container
+      spacing={2}
+      direction="row"
+      justify="flex-start"
+      alignItems="flex-start">
       {items.map((item) => (
-        <JobItem key={item.id} item={item}></JobItem>
+        <Grid key={item.id} item md={3}>
+          <JobCard key={item.id} item={item}></JobCard>
+        </Grid>
       ))}
-    </StyledJobsContainer>
+    </Grid>
   );
 };
 
