@@ -15,12 +15,13 @@ const App = () => {
       const result = await axios(
         `https://resume-75d42.firebaseio.com/experience.json`
       );
-      const fetchedJobs = [];
-      for (let key in result.data) {
-        fetchedJobs.push({ ...result.data[key] });
-      }
-      console.log(fetchedJobs);
-      setJobs(fetchedJobs);
+      
+      setJobs(
+      	Object
+	  .keys(result.data)
+	  .map((key) => result.data[key])
+      );
+      
       setIsLoading(false);
     };
     fetchItems();
