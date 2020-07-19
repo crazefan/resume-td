@@ -17,7 +17,7 @@ const App = () => {
       );
       
       setJobs(
-      	Object
+        Object
 	  .keys(result.data)
 	  .map((key) => result.data[key])
       );
