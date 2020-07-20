@@ -11,6 +11,10 @@ const useStyles = makeStyles({
     display: "flex",
     background: "lightBlue",
     borderRadius: "15px",
+    transition: "background-color 0.3s ease-in-out",
+    "&:hover": {
+      background: "#f48fb1",
+    },
   },
   date: {
     fontSize: 16,
