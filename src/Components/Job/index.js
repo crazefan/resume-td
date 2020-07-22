@@ -1,9 +1,21 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Spinner from "../Spinner/Spinner";
 import JobCard from "./Job";
 import { Grid } from "@material-ui/core";
+import { fetchItems } from "../../Utils/index";
 
-const JobItems = ({ items, isLoading }) => {
+const JobItems = () => {
+  const [jobs, setJobs] = useState([]);
+  const [isLoading, setIsLoading] = useState([true]);
+
+  useEffect(() => {
+    (async () => {
+      setJobs(await fetchItems("experience.json"));
+      setIsLoading(false);
+    })();
+  }, []);
+
   return isLoading ? (
     <Spinner />
   ) : (
@@ -13,7 +25,7 @@ const JobItems = ({ items, isLoading }) => {
       direction="row"
       justify="flex-start"
       alignItems="flex-start">
-      {items.map((item) => (
+      {jobs.map((item) => (
         <Grid key={item.id} item md={3}>
           <JobCard key={item.id} item={item}></JobCard>
         </Grid>

@@ -42,7 +42,7 @@ export default function JobCard({ item }) {
     <Card className={classes.root}>
       <CardContent>
         <Typography className={classes.date} gutterBottom>
-          <DateRangeIcon fontSize="small" />
+          <DateRangeIcon fontSize="small" style={{ marginRight: ".3rem" }} />
           {item.start} - {item.end}
         </Typography>
         <Typography className={classes.title} gutterBottom>
