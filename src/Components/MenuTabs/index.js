@@ -10,7 +10,6 @@ function TabContainer(props) {
 
   return (
     <div
-      // role="tabcontainer"
       hidden={value !== index}
       id={`full-width-tabpanel-${index}`}
       aria-labelledby={`full-width-tab-${index}`}
@@ -30,21 +29,55 @@ TabContainer.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
+const blue = {
+  style: {
+    height: "7px",
+    backgroundColor: "lightBlue",
+  },
+};
+
+const pink = {
+  style: {
+    height: "7px",
+    backgroundColor: "#f48fb1",
+  },
+};
+
+const green = {
+  style: {
+    height: "7px",
+    backgroundColor: "green",
+  },
+};
+
 const MenuTabs = () => {
   const [value, setValue] = React.useState(0);
+  const [color, setColor] = React.useState(blue);
   const changeHandler = (event, newValue) => {
     setValue(newValue);
+    switch (newValue) {
+      case 0:
+        setColor(blue);
+        break;
+
+      case 1:
+        setColor(pink);
+        break;
+      case 2:
+        setColor(green);
+    }
   };
   return (
     <div>
       <Tabs
         value={value}
         onChange={changeHandler}
+        TabIndicatorProps={color}
         aria-label="section tabs"
         centered>
-        <Tab label="Experience" />
-        <Tab label="Skills" />
-        <Tab label="Education" />
+        <Tab value={0} label="Experience" />
+        <Tab value={1} label="Skills" />
+        <Tab value={2} label="Education" />
       </Tabs>
       <TabContainer value={value} index={0}>
         <Jobs />

@@ -1,8 +1,10 @@
 import React from "react";
-import classes from "./Spinner.module.css";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
-const Spinner = () => {
-  return <div className={classes.Loader}></div>;
-};
-
-export default Spinner;
+export default function Spinner() {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <CircularProgress />
+    </div>
+  );
+}

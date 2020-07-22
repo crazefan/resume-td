@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Container>
       <Typography variant="h5">Timur Dolgopolov</Typography>
-      <Typography variant="subtitle">web developer</Typography>
+      <Typography variant="subtitle2">web developer</Typography>
       <MenuTabs />
     </Container>
   );
