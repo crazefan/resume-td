@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "auto",
     flexWrap: "wrap",
     width: "500px",
+
     "& > *": {
       margin: theme.spacing(1),
     },
@@ -52,18 +53,17 @@ const Skills = () => {
         `https://resume-75d42.firebaseio.com/skillset.json`
       );
       setSkills(result.data);
-      console.log(result.data);
       setIsLoading(false);
     };
     fetchItems();
   }, []);
 
   return isLoading ? (
-    <Spinner></Spinner>
+    <Spinner spinnerColor="#f48fb1"></Spinner>
   ) : (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       {skills.map((item) => (
-        <Card className={classes.card}>
+        <Card key={skills.indexOf(item)} className={classes.card}>
           <CardContent className={classes.cardContent}>
             <Typography variant="subtitle2" className={classes.fontSize}>
               {item}
@@ -71,7 +71,7 @@ const Skills = () => {
           </CardContent>
         </Card>
       ))}
-    </div>
+    </Box>
   );
 };
 

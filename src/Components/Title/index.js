@@ -10,13 +10,13 @@ const Title = () => {
         <Typography
           variant="subtitle1"
           display="inline"
-          style={{ marginRight: 5, color: "lightBlue" }}>
+          style={{ marginRight: 5, color: "lightBlue", fontSize: "1.4rem" }}>
           web
         </Typography>
         <Typography
           variant="subtitle1"
           display="inline"
-          style={{ marginRight: 5, color: "pink" }}>
+          style={{ marginRight: 5, color: "pink", fontSize: "1.4rem" }}>
           developer
         </Typography>
       </Box>

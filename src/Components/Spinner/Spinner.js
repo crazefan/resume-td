@@ -1,10 +1,12 @@
 import React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-export default function Spinner(color) {
+const Spinner = ({ spinnerColor }) => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
-      <CircularProgress thickness="10" />
+      <CircularProgress thickness={10} style={{ color: `${spinnerColor}` }} />
     </div>
   );
-}
+};
+
+export default Spinner;

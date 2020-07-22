@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 import Jobs from "../Job";
 import Skills from "../Skills";
+import Education from "../Education";
 
 function TabContainer(props) {
   const { children, value, index, ...other } = props;
@@ -48,7 +49,7 @@ const pink = {
 const green = {
   style: {
     height: "7px",
-    backgroundColor: "green",
+    backgroundColor: "lightGreen",
   },
 };
 
@@ -61,12 +62,14 @@ const MenuTabs = () => {
       case 0:
         setColor(blue);
         break;
-
       case 1:
         setColor(pink);
         break;
       case 2:
         setColor(green);
+        break;
+      default:
+        setColor(blue);
     }
   };
   return (
@@ -87,7 +90,7 @@ const MenuTabs = () => {
         <Skills />
       </TabContainer>
       <TabContainer value={value} index={2}>
-        Item Three
+        <Education />
       </TabContainer>
     </div>
   );

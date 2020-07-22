@@ -17,7 +17,7 @@ const JobItems = () => {
   }, []);
 
   return isLoading ? (
-    <Spinner />
+    <Spinner spinnerColor="lightBlue" />
   ) : (
     <Grid
       container
