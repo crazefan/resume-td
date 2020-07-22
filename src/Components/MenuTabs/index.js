@@ -1,9 +1,11 @@
 import React from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Jobs from "../Job";
 import Box from "@material-ui/core/Box";
 import PropTypes from "prop-types";
+
+import Jobs from "../Job";
+import Skills from "../Skills";
 
 function TabContainer(props) {
   const { children, value, index, ...other } = props;
@@ -73,7 +75,6 @@ const MenuTabs = () => {
         value={value}
         onChange={changeHandler}
         TabIndicatorProps={color}
-        aria-label="section tabs"
         centered>
         <Tab value={0} label="Experience" />
         <Tab value={1} label="Skills" />
@@ -83,7 +84,7 @@ const MenuTabs = () => {
         <Jobs />
       </TabContainer>
       <TabContainer value={value} index={1}>
-        Skills
+        <Skills />
       </TabContainer>
       <TabContainer value={value} index={2}>
         Item Three

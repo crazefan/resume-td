@@ -22,13 +22,13 @@ const useStyles = makeStyles({
     verticalAlign: "middle",
     display: "inline-flex",
   },
-  title: {
+  pos: {
     fontSize: 18,
     lineHeight: 1.2,
     fontWeight: 700,
   },
 
-  pos: {
+  title: {
     marginBottom: 12,
     fontSize: 16,
   },
@@ -45,12 +45,12 @@ export default function JobCard({ item }) {
           <DateRangeIcon fontSize="small" style={{ marginRight: ".3rem" }} />
           {item.start} - {item.end}
         </Typography>
-        <Typography className={classes.title} gutterBottom>
+        <Typography className={classes.pos} gutterBottom>
           {item.position}
         </Typography>
         <Typography
           variant="subtitle2"
-          className={classes.pos}
+          className={classes.title}
           color="textSecondary">
           {item.name}
         </Typography>
