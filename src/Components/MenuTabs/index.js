@@ -1,36 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Box from "@material-ui/core/Box";
-import PropTypes from "prop-types";
 
 import Jobs from "../Job";
 import Skills from "../Skills";
 import Education from "../Education";
-
-function TabContainer(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}>
-      {value === index && (
-        <Box p={3}>
-          <div>{children}</div>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabContainer.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
+import { Switch, Route, Link } from "react-router-dom";
 
 const blue = {
   style: {
@@ -54,18 +29,19 @@ const green = {
 };
 
 const MenuTabs = () => {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState("/");
   const [color, setColor] = React.useState(blue);
-  const changeHandler = (event, newValue) => {
+  const changeHandler = (newValue) => {
     setValue(newValue);
-    switch (newValue) {
-      case 0:
+    console.log(newValue);
+    switch (value) {
+      case "/":
         setColor(blue);
         break;
-      case 1:
+      case "/skills":
         setColor(pink);
         break;
-      case 2:
+      case "/education":
         setColor(green);
         break;
       default:
@@ -74,24 +50,38 @@ const MenuTabs = () => {
   };
   return (
     <div>
-      <Tabs
-        value={value}
-        onChange={changeHandler}
-        TabIndicatorProps={color}
-        centered>
-        <Tab value={0} label="Experience" />
-        <Tab value={1} label="Skills" />
-        <Tab value={2} label="Education" />
-      </Tabs>
-      <TabContainer value={value} index={0}>
-        <Jobs />
-      </TabContainer>
-      <TabContainer value={value} index={1}>
-        <Skills />
-      </TabContainer>
-      <TabContainer value={value} index={2}>
-        <Education />
-      </TabContainer>
+      <Route
+        path="/"
+        render={({ location }) => (
+          <Fragment>
+            <Tabs
+              style={{ margin: 20 }}
+              value={location.pathname}
+              onChange={changeHandler(location.pathname)}
+              TabIndicatorProps={color}
+              centered>
+              <Tab value="/" label="Experience" component={Link} to="/" />
+              <Tab
+                value="/skills"
+                label="Skills"
+                component={Link}
+                to="/skills"
+              />
+              <Tab
+                value="/education"
+                label="Education"
+                component={Link}
+                to="/education"
+              />
+            </Tabs>
+            <Switch>
+              <Route path="/education" render={() => <Education />} />
+              <Route path="/skills" render={() => <Skills />} />
+              <Route path="/" render={() => <Jobs />} />
+            </Switch>
+          </Fragment>
+        )}
+      />
     </div>
   );
 };
