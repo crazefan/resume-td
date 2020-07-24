@@ -12,6 +12,7 @@
 /build
 
 # misc
+/src/Components/MenuTabs/oldindex.js
 .DS_Store
 .env.local
 .env.development.local

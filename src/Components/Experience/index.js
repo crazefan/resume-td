@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../Spinner/";
 import JobCard from "./Job";
 import { Grid } from "@material-ui/core";
 import { fetchItems } from "../../Utils/index";

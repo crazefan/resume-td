@@ -7,47 +7,33 @@ import Skills from "../Skills";
 import Education from "../Education";
 import { Switch, Route, Link } from "react-router-dom";
 
-const blue = {
-  style: {
-    height: "7px",
-    backgroundColor: "lightBlue",
+const tabs = [
+  {
+    value: "/",
+    label: "Experience",
+    color: "lightBlue",
+    component: Jobs,
   },
-};
+  {
+    value: "/skills",
+    label: "Skills",
+    color: "#f48fb1",
+    component: Skills,
+  },
 
-const pink = {
-  style: {
-    height: "7px",
-    backgroundColor: "#f48fb1",
+  {
+    value: "/education",
+    label: "Education",
+    color: "lightGreen",
+    component: Education,
   },
-};
-
-const green = {
-  style: {
-    height: "7px",
-    backgroundColor: "lightGreen",
-  },
-};
+];
 
 const MenuTabs = () => {
-  const [value, setValue] = React.useState("/");
-  const [color, setColor] = React.useState(blue);
-  const changeHandler = (newValue) => {
-    setValue(newValue);
-    //  console.log(newValue);
-    switch (value) {
-      case "/":
-        setColor(blue);
-        break;
-      case "/skills":
-        setColor(pink);
-        break;
-      case "/education":
-        setColor(green);
-        break;
-      default:
-        setColor(blue);
-    }
+  const currentColor = (location) => {
+    return tabs.find(({ value }) => value === location).color;
   };
+
   return (
     <Route
       path="/"
@@ -56,22 +42,34 @@ const MenuTabs = () => {
           <Tabs
             style={{ margin: 20 }}
             value={location.pathname}
-            onChange={changeHandler(location.pathname)}
-            TabIndicatorProps={color}
+            TabIndicatorProps={{
+              style: {
+                height: "7px",
+                backgroundColor: currentColor(location.pathname),
+              },
+            }}
             centered>
-            <Tab value="/" label="Experience" component={Link} to="/" />
-            <Tab value="/skills" label="Skills" component={Link} to="/skills" />
-            <Tab
-              value="/education"
-              label="Education"
-              component={Link}
-              to="/education"
-            />
+            {tabs.map(({ value, label }) => (
+              <Tab
+                key={value}
+                value={value}
+                label={label}
+                component={Link}
+                to={value}
+              />
+            ))}
           </Tabs>
           <Switch>
-            <Route path="/education" render={() => <Education />} />
-            <Route path="/skills" render={() => <Skills />} />
-            <Route path="/" render={() => <Jobs />} />
+            {tabs
+              .slice()
+              .reverse()
+              .map(({ value, component }) => (
+                <Route
+                  key={value}
+                  path={value}
+                  render={() => React.createElement(component)}
+                />
+              ))}
           </Switch>
         </Fragment>
       )}

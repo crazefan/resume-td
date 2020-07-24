@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 import Box from "@material-ui/core/Box";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../Spinner/";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
