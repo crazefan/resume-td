@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import Jobs from "../Job";
+import Jobs from "../Experience";
 import Skills from "../Skills";
 import Education from "../Education";
 import { Switch, Route, Link } from "react-router-dom";
@@ -33,7 +33,7 @@ const MenuTabs = () => {
   const [color, setColor] = React.useState(blue);
   const changeHandler = (newValue) => {
     setValue(newValue);
-    console.log(newValue);
+    //  console.log(newValue);
     switch (value) {
       case "/":
         setColor(blue);
@@ -49,40 +49,33 @@ const MenuTabs = () => {
     }
   };
   return (
-    <div>
-      <Route
-        path="/"
-        render={({ location }) => (
-          <Fragment>
-            <Tabs
-              style={{ margin: 20 }}
-              value={location.pathname}
-              onChange={changeHandler(location.pathname)}
-              TabIndicatorProps={color}
-              centered>
-              <Tab value="/" label="Experience" component={Link} to="/" />
-              <Tab
-                value="/skills"
-                label="Skills"
-                component={Link}
-                to="/skills"
-              />
-              <Tab
-                value="/education"
-                label="Education"
-                component={Link}
-                to="/education"
-              />
-            </Tabs>
-            <Switch>
-              <Route path="/education" render={() => <Education />} />
-              <Route path="/skills" render={() => <Skills />} />
-              <Route path="/" render={() => <Jobs />} />
-            </Switch>
-          </Fragment>
-        )}
-      />
-    </div>
+    <Route
+      path="/"
+      render={({ location }) => (
+        <Fragment>
+          <Tabs
+            style={{ margin: 20 }}
+            value={location.pathname}
+            onChange={changeHandler(location.pathname)}
+            TabIndicatorProps={color}
+            centered>
+            <Tab value="/" label="Experience" component={Link} to="/" />
+            <Tab value="/skills" label="Skills" component={Link} to="/skills" />
+            <Tab
+              value="/education"
+              label="Education"
+              component={Link}
+              to="/education"
+            />
+          </Tabs>
+          <Switch>
+            <Route path="/education" render={() => <Education />} />
+            <Route path="/skills" render={() => <Skills />} />
+            <Route path="/" render={() => <Jobs />} />
+          </Switch>
+        </Fragment>
+      )}
+    />
   );
 };
 

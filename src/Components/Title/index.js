@@ -1,10 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Avatar from "../Avatar/";
 
 const Title = () => {
   return (
     <Box display="flex" justifyContent="center" m="50px 20px">
+      <Avatar />
       <Box>
         <Typography variant="h5">Timur Dolgopolov</Typography>
         <Typography
@@ -16,7 +18,7 @@ const Title = () => {
         <Typography
           variant="subtitle1"
           display="inline"
-          style={{ marginRight: 5, color: "pink", fontSize: "1.4rem" }}>
+          style={{ marginRight: 5, color: "#F48FB1", fontSize: "1.4rem" }}>
           developer
         </Typography>
       </Box>
