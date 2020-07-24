@@ -2,9 +2,9 @@ import React, { Fragment } from "react";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import Jobs from "../Experience";
-import Skills from "../Skills";
-import Education from "../Education";
+import Jobs from "../../Components/Experience";
+import Skills from "../../Components/Skills";
+import Education from "../../Components/Education";
 import { Switch, Route, Link } from "react-router-dom";
 
 const tabs = [

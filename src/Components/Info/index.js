@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     fontSize: 24,
     verticalAlign: "middle",
     marginRight: ".3rem",
+    color: "lightGreen",
   },
 });
 

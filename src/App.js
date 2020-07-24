@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import MenuTabs from "./Components/MenuTabs/";
+import TabsContainer from "./Containers/TabsContainer";
 import { BrowserRouter } from "react-router-dom";
 import TopContainer from "./Containers/InfoContainer/";
 
@@ -9,7 +9,7 @@ const App = () => {
     <BrowserRouter>
       <Container>
         <TopContainer />
-        <MenuTabs />
+        <TabsContainer />
       </Container>
     </BrowserRouter>
   );
