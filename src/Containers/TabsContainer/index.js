@@ -24,7 +24,7 @@ const tabs = [
   {
     value: "/education",
     label: "Education",
-    color: "lightGreen",
+    color: "#1de9b6",
     component: Education,
   },
 ];

@@ -25,20 +25,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     background: "#f48fb1",
     borderRadius: "30px",
-    maxHeight: "40px",
     transition: "background-color 0.3s ease-in-out",
     "&:hover": {
       background: "lightBlue",
     },
-    justifyContent: "center",
-    alignContent: "center",
-    padding: "12px",
   },
-  cardContent: {
-    padding: "12px",
-  },
+
   text: {
-    fontSize: 24,
+    fontSize: 18,
+    fontWeight: 700,
   },
 }));
 
@@ -65,9 +60,7 @@ const Skills = () => {
       {skills.map((item) => (
         <Card key={skills.indexOf(item)} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography variant="subtitle2" className={classes.fontSize}>
-              {item}
-            </Typography>
+            <Typography className={classes.text}>{item}</Typography>
           </CardContent>
         </Card>
       ))}

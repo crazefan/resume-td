@@ -5,7 +5,7 @@ import Avatar from "../Avatar/";
 
 const Title = () => {
   return (
-    <Box display="flex" justifyContent="center" m="50px 20px">
+    <Box display="flex" justifyContent="center">
       <Avatar />
       <Box>
         <Typography variant="h5">Timur Dolgopolov</Typography>

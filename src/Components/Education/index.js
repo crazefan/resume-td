@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     minWidth: 200,
     maxWidth: 350,
     display: "flex",
-    background: "lightGreen",
+    background: "#1de9b6",
     borderRadius: "15px",
     transition: "background-color 0.3s ease-in-out",
     "&:hover": {
