@@ -4,7 +4,6 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
   root: {

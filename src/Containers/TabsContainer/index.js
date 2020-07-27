@@ -5,19 +5,21 @@ import Tab from "@material-ui/core/Tab";
 import Jobs from "../../Components/Experience";
 import Skills from "../../Components/Skills";
 import Education from "../../Components/Education";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 
 const tabs = [
   {
     value: "/",
     label: "Experience",
     color: "lightBlue",
+    exact: true,
     component: Jobs,
   },
   {
     value: "/skills",
     label: "Skills",
     color: "#f48fb1",
+    exact: false,
     component: Skills,
   },
 
@@ -25,6 +27,7 @@ const tabs = [
     value: "/education",
     label: "Education",
     color: "#1de9b6",
+    exact: false,
     component: Education,
   },
 ];
@@ -63,13 +66,15 @@ const MenuTabs = () => {
             {tabs
               .slice()
               .reverse()
-              .map(({ value, component }) => (
+              .map(({ value, component, exact }) => (
                 <Route
                   key={value}
                   path={value}
-                  render={() => React.createElement(component)}
+                  exact={exact}
+                  component={component}
                 />
               ))}
+            <Redirect to="/" />
           </Switch>
         </Fragment>
       )}
