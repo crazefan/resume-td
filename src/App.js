@@ -7,19 +7,12 @@ import { Switch, Route, Redirect } from "react-router-dom";
 const App = () => {
   return (
     <Container>
+      <TopContainer />
       <Switch>
-        <Route path="/experience">
-          <TopContainer /> <TabsContainer />
-        </Route>
-        <Route path="/skills">
-          <TopContainer /> <TabsContainer />
-        </Route>
-        <Route path="/education">
-          <TopContainer /> <TabsContainer />
-        </Route>
-        <Route exact path="/">
-          <TopContainer /> <TabsContainer />
-        </Route>
+        <Route exact path="/experience" component={TabsContainer} />
+        <Route exact path="/skills" component={TabsContainer} />
+        <Route exact path="/education" component={TabsContainer} />
+        <Route exact path="/" component={TabsContainer} />
         <Redirect to="/" />
       </Switch>
     </Container>

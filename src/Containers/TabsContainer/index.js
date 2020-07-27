@@ -63,17 +63,14 @@ const MenuTabs = () => {
             ))}
           </Tabs>
           <Switch>
-            {tabs
-              .slice()
-              .reverse()
-              .map(({ value, component, exact }) => (
-                <Route
-                  key={value}
-                  path={value}
-                  exact={exact}
-                  component={component}
-                />
-              ))}
+            {tabs.map(({ value, component, exact }) => (
+              <Route
+                key={value}
+                path={value}
+                exact={exact}
+                component={component}
+              />
+            ))}
             <Redirect to="/" />
           </Switch>
         </Fragment>

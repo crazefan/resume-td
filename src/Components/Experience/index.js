@@ -10,21 +10,28 @@ const JobItems = () => {
   const [isLoading, setIsLoading] = useState([true]);
 
   useEffect(() => {
-    const myRequest = axios.CancelToken.source();
-    const fetchItems = async () => {
-      const result = await axios(
-        `https://resume-75d42.firebaseio.com/experience.json`,
-        {
-          cancelToken: myRequest.token,
-        }
-      );
-      setJobs(Object.keys(result.data).map((key) => result.data[key]));
+    if (localStorage.getItem("experience")) {
+      var localResult = JSON.parse(localStorage.getItem("experience"));
+      setJobs(Object.keys(localResult).map((key) => localResult[key]));
       setIsLoading(false);
-    };
-    fetchItems();
-    return () => {
-      myRequest.cancel();
-    };
+    } else {
+      const myRequest = axios.CancelToken.source();
+      const fetchItems = async () => {
+        const result = await axios(
+          `https://resume-75d42.firebaseio.com/experience.json`,
+          {
+            cancelToken: myRequest.token,
+          }
+        );
+        localStorage.setItem("experience", JSON.stringify(result.data));
+        setJobs(Object.keys(result.data).map((key) => result.data[key]));
+        setIsLoading(false);
+      };
+      fetchItems();
+      return () => {
+        myRequest.cancel();
+      };
+    }
   }, []);
 
   return isLoading ? (

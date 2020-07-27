@@ -52,21 +52,29 @@ const Skills = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    const myRequest = axios.CancelToken.source();
-    const fetchItems = async () => {
-      const result = await axios(
-        `https://resume-75d42.firebaseio.com/skillset.json`,
-        {
-          cancelToken: myRequest.token,
-        }
-      );
-      setSkills(result.data);
+    if (localStorage.getItem("skills")) {
+      var localResult = JSON.parse(localStorage.getItem("skills"));
+      console.log(localResult);
+      setSkills(localResult);
       setIsLoading(false);
-    };
-    fetchItems();
-    return () => {
-      myRequest.cancel();
-    };
+    } else {
+      const myRequest = axios.CancelToken.source();
+      const fetchItems = async () => {
+        const result = await axios(
+          `https://resume-75d42.firebaseio.com/skillset.json`,
+          {
+            cancelToken: myRequest.token,
+          }
+        );
+        localStorage.setItem("skills", JSON.stringify(result.data));
+        setSkills(result.data);
+        setIsLoading(false);
+      };
+      fetchItems();
+      return () => {
+        myRequest.cancel();
+      };
+    }
   }, []);
 
   return isLoading ? (
