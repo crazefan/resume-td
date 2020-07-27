@@ -11,6 +11,10 @@
 # production
 /build
 
+#firebase
+.firebaserc
+/.firebase
+
 # misc
 /src/Components/MenuTabs/oldindex.js
 .DS_Store
