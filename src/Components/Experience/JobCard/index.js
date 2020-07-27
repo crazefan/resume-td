@@ -4,6 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import DateRangeIcon from "@material-ui/icons/DateRange";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
   root: {
@@ -11,6 +12,7 @@ const useStyles = makeStyles({
     display: "flex",
     background: "lightBlue",
     borderRadius: "15px",
+
     transition: "background-color 0.3s ease-in-out",
     "&:hover": {
       background: "#f48fb1",

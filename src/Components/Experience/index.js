@@ -34,7 +34,7 @@ const JobItems = () => {
       container
       spacing={2}
       direction="row"
-      justify="flex-start"
+      justify="center"
       alignItems="flex-start">
       {jobs.map((item) => (
         <Grid key={item.id} item md={3}>

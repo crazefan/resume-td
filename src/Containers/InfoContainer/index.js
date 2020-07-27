@@ -6,7 +6,7 @@ import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
   root: {
-    margin: "50px 20px 20px 20px",
+    margin: "50px 20px 30px 20px",
   },
 });
 
@@ -17,7 +17,7 @@ const InfoContainer = () => {
       <Box mx={"auto"}>
         <Title />
       </Box>
-      <Box mx={"auto"} mt={2}>
+      <Box mx={"auto"} mt={4}>
         <Info />
       </Box>
     </Box>
