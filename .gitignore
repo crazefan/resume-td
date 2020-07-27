@@ -14,6 +14,8 @@
 #firebase
 .firebaserc
 /.firebase
+.firebase
+firebase.json
 
 # misc
 /src/Components/MenuTabs/oldindex.js
