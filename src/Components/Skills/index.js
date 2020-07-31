@@ -52,8 +52,8 @@ const Skills = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    if (localStorage.getItem("skills")) {
-      var localResult = JSON.parse(localStorage.getItem("skills"));
+    if (sessionStorage.getItem("skills")) {
+      var localResult = JSON.parse(sessionStorage.getItem("skills"));
       console.log(localResult);
       setSkills(localResult);
       setIsLoading(false);
@@ -66,7 +66,7 @@ const Skills = () => {
             cancelToken: myRequest.token,
           }
         );
-        localStorage.setItem("skills", JSON.stringify(result.data));
+        sessionStorage.setItem("skills", JSON.stringify(result.data));
         setSkills(result.data);
         setIsLoading(false);
       };

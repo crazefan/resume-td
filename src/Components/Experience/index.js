@@ -10,8 +10,8 @@ const JobItems = () => {
   const [isLoading, setIsLoading] = useState([true]);
 
   useEffect(() => {
-    if (localStorage.getItem("experience")) {
-      var localResult = JSON.parse(localStorage.getItem("experience"));
+    if (sessionStorage.getItem("experience")) {
+      var localResult = JSON.parse(sessionStorage.getItem("experience"));
       setJobs(Object.keys(localResult).map((key) => localResult[key]));
       setIsLoading(false);
     } else {
@@ -23,7 +23,7 @@ const JobItems = () => {
             cancelToken: myRequest.token,
           }
         );
-        localStorage.setItem("experience", JSON.stringify(result.data));
+        sessionStorage.setItem("experience", JSON.stringify(result.data));
         setJobs(Object.keys(result.data).map((key) => result.data[key]));
         setIsLoading(false);
       };

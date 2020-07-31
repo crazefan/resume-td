@@ -14,8 +14,8 @@ const chips = [
   {
     id: 0,
     icon: <PhoneIcon style={{ color: "#000" }} />,
-    label: "+420 792 739",
-    link: "tel:+420 792 739",
+    label: "+420 792 739 924",
+    link: "tel:+420 792 739 924",
     color: "lightBlue",
   },
   {
