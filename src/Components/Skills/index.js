@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Spinner from "../Spinner/";
+import ErrorMessage from "../ErrorMessage/";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
+import { TextareaAutosize } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,25 +51,44 @@ const useStyles = makeStyles((theme) => ({
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [isLoading, setIsLoading] = useState([true]);
+  const [hasError, setHasError] = useState(false);
+  const [errorText, setErrorText] = useState("");
+
   const classes = useStyles();
 
   useEffect(() => {
-    if (sessionStorage.getItem("skills")) {
+    if (
+      sessionStorage.getItem("skills") &&
+      sessionStorage.getItem("skills") !== null
+    ) {
       var localResult = JSON.parse(sessionStorage.getItem("skills"));
       setSkills(localResult);
       setIsLoading(false);
     } else {
       const myRequest = axios.CancelToken.source();
       const fetchItems = async () => {
-        const result = await axios(
-          `https://resume-75d42.firebaseio.com/skillset.json`,
-          {
+        await axios
+          .get(`https://resume-75d42.firebaseio.com/skillset.json`, {
             cancelToken: myRequest.token,
-          }
-        );
-        sessionStorage.setItem("skills", JSON.stringify(result.data));
-        setSkills(result.data);
-        setIsLoading(false);
+          })
+          .then(
+            (result) => {
+              if (result.data === null) {
+                setHasError(true);
+                setErrorText("Database is missing the value");
+                setIsLoading(false);
+              } else {
+                sessionStorage.setItem("skills", JSON.stringify(result.data));
+                setSkills(result.data);
+                setIsLoading(false);
+              }
+            },
+            (error) => {
+              setHasError(true);
+              setErrorText(error.message);
+              setIsLoading(false);
+            }
+          );
       };
       fetchItems();
       return () => {
@@ -78,6 +99,8 @@ const Skills = () => {
 
   return isLoading ? (
     <Spinner spinnerColor="#f48fb1"></Spinner>
+  ) : hasError ? (
+    <ErrorMessage err={errorText} />
   ) : (
     <Box className={classes.root}>
       {skills.map((item) => (
