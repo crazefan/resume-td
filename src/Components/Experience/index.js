@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../Spinner/";
-import JobCard from "./JobCard/";
+import JobCard from "./JobCard/index.tsx";
 import { Grid } from "@material-ui/core";
 
 const JobItems = () => {

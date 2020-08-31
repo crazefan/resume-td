@@ -5,6 +5,14 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import DateRangeIcon from "@material-ui/icons/DateRange";
 
+interface Item {
+  start: Number;
+  end: String;
+  position: String;
+  name: String;
+  info: String;
+}
+
 const useStyles = makeStyles({
   root: {
     minWidth: 200,
@@ -36,7 +44,7 @@ const useStyles = makeStyles({
   textColor: {},
 });
 
-export default function JobCard({ item }) {
+export default function JobCard({ item }: { item: Item }) {
   const classes = useStyles();
 
   return (

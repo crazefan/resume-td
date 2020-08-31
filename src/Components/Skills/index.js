@@ -54,7 +54,6 @@ const Skills = () => {
   useEffect(() => {
     if (sessionStorage.getItem("skills")) {
       var localResult = JSON.parse(sessionStorage.getItem("skills"));
-      console.log(localResult);
       setSkills(localResult);
       setIsLoading(false);
     } else {
