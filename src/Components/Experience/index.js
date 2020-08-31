@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../Spinner/";
 import JobCard from "./JobCard/index.tsx";
+import ErrorMessage from "../ErrorMessage";
 import { Grid } from "@material-ui/core";
 
 const JobItems = () => {
   const [jobs, setJobs] = useState([]);
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
 
   useEffect(() => {
     if (sessionStorage.getItem("experience")) {
@@ -17,15 +20,33 @@ const JobItems = () => {
     } else {
       const myRequest = axios.CancelToken.source();
       const fetchItems = async () => {
-        const result = await axios(
-          `https://resume-75d42.firebaseio.com/experience.json`,
-          {
+        await axios
+          .get(`https://resume-75d42.firebaseio.com/experience.json`, {
             cancelToken: myRequest.token,
-          }
-        );
-        sessionStorage.setItem("experience", JSON.stringify(result.data));
-        setJobs(Object.keys(result.data).map((key) => result.data[key]));
-        setIsLoading(false);
+          })
+          .then(
+            (result) => {
+              if (result.data === null) {
+                setHasError(true);
+                setErrorMessage("Database is missing the requested value.");
+                setIsLoading(false);
+              } else {
+                sessionStorage.setItem(
+                  "experience",
+                  JSON.stringify(result.data)
+                );
+                setJobs(
+                  Object.keys(result.data).map((key) => result.data[key])
+                );
+                setIsLoading(false);
+              }
+            },
+            (error) => {
+              setHasError(true);
+              setErrorMessage(error.message);
+              setIsLoading(false);
+            }
+          );
       };
       fetchItems();
       return () => {
@@ -36,6 +57,8 @@ const JobItems = () => {
 
   return isLoading ? (
     <Spinner spinnerColor="lightBlue" />
+  ) : hasError ? (
+    <ErrorMessage message={errorMessage} />
   ) : (
     <Grid
       container

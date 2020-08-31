@@ -2,11 +2,11 @@ import { Box, Typography } from "@material-ui/core";
 import React from "react";
 
 const error = (props) => {
-  const { err } = props;
+  const { message } = props;
   return (
-    <Box m="auto">
+    <Box mx="auto">
       <Typography>Something went wrong! Try to reload page.</Typography>
-      <Typography>Error message: {err}</Typography>
+      <Typography>Error message: {message}</Typography>
     </Box>
   );
 };

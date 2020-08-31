@@ -8,7 +8,6 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
-import { TextareaAutosize } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,9 +49,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
-  const [isLoading, setIsLoading] = useState([true]);
+  const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const classes = useStyles();
 
@@ -75,7 +74,7 @@ const Skills = () => {
             (result) => {
               if (result.data === null) {
                 setHasError(true);
-                setErrorText("Database is missing the value");
+                setErrorMessage("Database is missing the value");
                 setIsLoading(false);
               } else {
                 sessionStorage.setItem("skills", JSON.stringify(result.data));
@@ -85,7 +84,7 @@ const Skills = () => {
             },
             (error) => {
               setHasError(true);
-              setErrorText(error.message);
+              setErrorMessage(error.message);
               setIsLoading(false);
             }
           );
@@ -100,7 +99,7 @@ const Skills = () => {
   return isLoading ? (
     <Spinner spinnerColor="#f48fb1"></Spinner>
   ) : hasError ? (
-    <ErrorMessage err={errorText} />
+    <ErrorMessage message={errorMessage} />
   ) : (
     <Box className={classes.root}>
       {skills.map((item) => (
