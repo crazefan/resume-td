@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 
 const PortraitAvatar = () => {
   const classes = useStyles();
-  return <Avatar src={avatartd} className={classes.avatar}></Avatar>;
+  return <Avatar src={avatartd} className={classes.avatar} alt={"Timur Dolgopolov"}></Avatar>;
 };
 
 export default PortraitAvatar;

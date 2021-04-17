@@ -1,9 +1,10 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import Spinner from "../Spinner/";
 import JobCard from "./JobCard/index";
 import ErrorMessage from "../ErrorMessage";
+
 import { Grid } from "@material-ui/core";
 
 const JobItems = () => {
@@ -29,13 +30,13 @@ const JobItems = () => {
           (result) => {
             if (result.data === null) {
               setHasError(true);
-              setErrorMessage("Database is missing the requested value.");
+              setErrorMessage("Database is missing the requested data.");
               setIsLoading(false);
-            } else {
-              sessionStorage.setItem("experience", JSON.stringify(result.data));
-              setJobs(Object.keys(result.data).map((key) => result.data[key]));
-              setIsLoading(false);
+              return;
             }
+            sessionStorage.setItem("experience", JSON.stringify(result.data));
+            setJobs(Object.keys(result.data).map((key) => result.data[key]));
+            setIsLoading(false);
           },
           (error) => {
             setHasError(true);
