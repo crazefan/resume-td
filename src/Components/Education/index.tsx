@@ -1,11 +1,11 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
+import RoomIcon from "@material-ui/icons/Room";
 import Typography from "@material-ui/core/Typography";
 import CardContent from "@material-ui/core/CardContent";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-import Box from "@material-ui/core/Box";
-import RoomIcon from "@material-ui/icons/Room";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   root: {
@@ -56,9 +56,7 @@ const Education = () => {
           <Typography className={classes.pos} gutterBottom>
             American University of Central Asia
           </Typography>
-          <Typography className={classes.title}>
-            Software Engineering
-          </Typography>
+          <Typography className={classes.title}>Software Engineering</Typography>
           <Typography variant="body2" component="p" gutterBottom>
             Bachelor of Arts
           </Typography>

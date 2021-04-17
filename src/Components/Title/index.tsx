@@ -1,7 +1,7 @@
 import React from "react";
+import Avatar from "../Avatar/";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Avatar from "../Avatar/";
 
 const Title = () => {
   return (
@@ -12,13 +12,15 @@ const Title = () => {
         <Typography
           variant="subtitle1"
           display="inline"
-          style={{ marginRight: 5, color: "lightBlue", fontSize: "1.4rem" }}>
+          style={{ marginRight: 5, color: "lightBlue", fontSize: "1.4rem" }}
+        >
           web
         </Typography>
         <Typography
           variant="subtitle1"
           display="inline"
-          style={{ marginRight: 5, color: "#F48FB1", fontSize: "1.4rem" }}>
+          style={{ marginRight: 5, color: "#F48FB1", fontSize: "1.4rem" }}
+        >
           developer
         </Typography>
       </Box>

@@ -33,8 +33,8 @@ const tabs = [
 ];
 
 const MenuTabs = () => {
-  const currentColor = (location) => {
-    return tabs.find(({ value }) => value === location).color;
+  const currentColor = (location: string) => {
+    return tabs.find(({ value }) => value === location)!.color;
   };
 
   return (
@@ -51,25 +51,15 @@ const MenuTabs = () => {
                 backgroundColor: currentColor(location.pathname),
               },
             }}
-            centered>
+            centered
+          >
             {tabs.map(({ value, label }) => (
-              <Tab
-                key={value}
-                value={value}
-                label={label}
-                component={Link}
-                to={value}
-              />
+              <Tab key={value} value={value} label={label} component={Link} to={value} />
             ))}
           </Tabs>
           <Switch>
             {tabs.map(({ value, component, exact }) => (
-              <Route
-                key={value}
-                path={value}
-                exact={exact}
-                component={component}
-              />
+              <Route key={value} path={value} exact={exact} component={component} />
             ))}
             <Redirect to="/" />
           </Switch>

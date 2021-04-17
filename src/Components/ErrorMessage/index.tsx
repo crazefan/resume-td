@@ -1,8 +1,8 @@
-import { Box, Typography } from "@material-ui/core";
 import React from "react";
+import { Box, Typography } from "@material-ui/core";
+import { ErrorProps } from "../../types";
 
-const error = (props) => {
-  const { message } = props;
+const error: React.FC<ErrorProps> = ({ message }) => {
   return (
     <Box mx="auto">
       <Typography>Something went wrong! Try to reload page.</Typography>

@@ -4,14 +4,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import DateRangeIcon from "@material-ui/icons/DateRange";
-
-interface Item {
-  start: Number;
-  end: String;
-  position: String;
-  name: String;
-  info: String;
-}
+import { JobProps } from "../../../types";
 
 const useStyles = makeStyles({
   root: {
@@ -44,7 +37,7 @@ const useStyles = makeStyles({
   textColor: {},
 });
 
-export default function JobCard({ item }: { item: Item }) {
+const JobCard: React.FC<JobProps> = ({ job: { start, end, position, name, info } }) => {
   const classes = useStyles();
 
   return (
@@ -52,21 +45,20 @@ export default function JobCard({ item }: { item: Item }) {
       <CardContent>
         <Typography className={classes.date} gutterBottom>
           <DateRangeIcon fontSize="small" style={{ marginRight: ".3rem" }} />
-          {item.start} - {item.end}
+          {start} - {end}
         </Typography>
         <Typography className={classes.pos} gutterBottom>
-          {item.position}
+          {position}
         </Typography>
-        <Typography
-          variant="subtitle2"
-          className={classes.title}
-          color="textSecondary">
-          {item.name}
+        <Typography variant="subtitle2" className={classes.title} color="textSecondary">
+          {name}
         </Typography>
         <Typography variant="body2" component="p">
-          {item.info}
+          {info}
         </Typography>
       </CardContent>
     </Card>
   );
-}
+};
+
+export default JobCard;

@@ -56,11 +56,8 @@ const Skills = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    if (
-      sessionStorage.getItem("skills") &&
-      sessionStorage.getItem("skills") !== null
-    ) {
-      var localResult = JSON.parse(sessionStorage.getItem("skills"));
+    if (sessionStorage.getItem("skills") && sessionStorage.getItem("skills") !== null) {
+      var localResult = JSON.parse(sessionStorage.getItem("skills")!);
       setSkills(localResult);
       setIsLoading(false);
     } else {
