@@ -15,5 +15,5 @@ export interface SpinnerProps {
 }
 
 export type ErrorProps = {
-  message: string;
+  message: string | undefined;
 };

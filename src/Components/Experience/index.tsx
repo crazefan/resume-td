@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { fetchData } from "../../Utils/FirebaseFetch";
 
 import Spinner from "../Spinner/";
 import JobCard from "./JobCard/index";
@@ -11,7 +11,7 @@ const JobItems = () => {
   const [jobs, setJobs] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<any>();
+  const [errorMessage, setErrorMessage] = useState<string | undefined>();
 
   useEffect(() => {
     if (sessionStorage.getItem("experience")) {
@@ -20,35 +20,22 @@ const JobItems = () => {
       setIsLoading(false);
       return;
     }
-    const myRequest = axios.CancelToken.source();
-    const fetchItems = async () => {
-      await axios
-        .get(`https://resume-75d42.firebaseio.com/experience.json`, {
-          cancelToken: myRequest.token,
-        })
-        .then(
-          (result) => {
-            if (result.data === null) {
-              setHasError(true);
-              setErrorMessage("Database is missing the requested data.");
-              setIsLoading(false);
-              return;
-            }
-            sessionStorage.setItem("experience", JSON.stringify(result.data));
-            setJobs(Object.keys(result.data).map((key) => result.data[key]));
-            setIsLoading(false);
-          },
-          (error) => {
-            setHasError(true);
-            setErrorMessage(error.message);
-            setIsLoading(false);
-          }
-        );
+    const fetchItems = async (): Promise<void> => {
+      const [data, error] = await fetchData("experience.json");
+      if (data) {
+        sessionStorage.setItem("experience", JSON.stringify(data));
+        setJobs(Object.keys(data).map((key) => data[key]));
+        setIsLoading(false);
+        return;
+      }
+      if (error) {
+        setHasError(true);
+        setErrorMessage(error.message);
+        setIsLoading(false);
+        return;
+      }
     };
     fetchItems();
-    return () => {
-      myRequest.cancel();
-    };
   }, []);
 
   return isLoading ? (

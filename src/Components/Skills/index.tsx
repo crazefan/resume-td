@@ -1,8 +1,9 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
 import Spinner from "../Spinner/";
 import ErrorMessage from "../ErrorMessage/";
-import axios from "axios";
+import { fetchData } from "../../Utils/FirebaseFetch";
+
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
@@ -56,41 +57,26 @@ const Skills = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    if (sessionStorage.getItem("skills") && sessionStorage.getItem("skills") !== null) {
-      var localResult = JSON.parse(sessionStorage.getItem("skills")!);
-      setSkills(localResult);
+    if (sessionStorage.getItem("skills")) {
+      setSkills(JSON.parse(sessionStorage.getItem("skills")!));
       setIsLoading(false);
-    } else {
-      const myRequest = axios.CancelToken.source();
-      const fetchItems = async () => {
-        await axios
-          .get(`https://resume-75d42.firebaseio.com/skillset.json`, {
-            cancelToken: myRequest.token,
-          })
-          .then(
-            (result) => {
-              if (result.data === null) {
-                setHasError(true);
-                setErrorMessage("Database is missing the value");
-                setIsLoading(false);
-              } else {
-                sessionStorage.setItem("skills", JSON.stringify(result.data));
-                setSkills(result.data);
-                setIsLoading(false);
-              }
-            },
-            (error) => {
-              setHasError(true);
-              setErrorMessage(error.message);
-              setIsLoading(false);
-            }
-          );
-      };
-      fetchItems();
-      return () => {
-        myRequest.cancel();
-      };
+      return;
     }
+    const fetchItems = async (): Promise<void> => {
+      const [data, error] = await fetchData("skillset.json");
+      if (data) {
+        sessionStorage.setItem("skills", JSON.stringify(data));
+        setSkills(data);
+        setIsLoading(false);
+        return;
+      }
+      if (error) {
+        setHasError(true);
+        setErrorMessage(error.message);
+        setIsLoading(false);
+      }
+    };
+    fetchItems();
   }, []);
 
   return isLoading ? (
@@ -99,10 +85,10 @@ const Skills = () => {
     <ErrorMessage message={errorMessage} />
   ) : (
     <Box className={classes.root}>
-      {skills.map((item) => (
-        <Card key={skills.indexOf(item)} className={classes.card}>
+      {skills.map((skill) => (
+        <Card key={skills.indexOf(skill)} className={classes.card}>
           <CardContent className={classes.cardContent}>
-            <Typography className={classes.text}>{item}</Typography>
+            <Typography className={classes.text}>{skill}</Typography>
           </CardContent>
         </Card>
       ))}
