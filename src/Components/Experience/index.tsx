@@ -38,14 +38,16 @@ const JobItems = () => {
     fetchItems();
   }, []);
 
+  const sortedJobs = jobs.sort((a, b) => b.id - a.id);
+
   return isLoading ? (
     <Spinner spinnerColor="lightBlue" />
   ) : hasError ? (
     <ErrorMessage message={errorMessage} />
   ) : (
     <Grid container spacing={2} direction="row" justify="center" alignItems="flex-start">
-      {jobs.map((job) => (
-        <Grid key={job.id} item md={3}>
+      {sortedJobs.map((job) => (
+        <Grid item key={job.id} md={4}>
           <JobCard key={job.id} job={job}></JobCard>
         </Grid>
       ))}

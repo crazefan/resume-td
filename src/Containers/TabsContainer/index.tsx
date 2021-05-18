@@ -1,11 +1,12 @@
 import React, { Fragment } from "react";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-
-import Jobs from "../../Components/Experience";
-import Skills from "../../Components/Skills";
-import Education from "../../Components/Education";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
+
+import Skills from "../../Components/Skills";
+import Jobs from "../../Components/Experience";
+import Education from "../../Components/Education";
+
+import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
 
 const tabs = [
   {
@@ -43,7 +44,7 @@ const MenuTabs = () => {
       render={({ location }) => (
         <Fragment>
           <Tabs
-            style={{ margin: 20 }}
+            style={{ margin: 30 }}
             value={location.pathname}
             TabIndicatorProps={{
               style: {

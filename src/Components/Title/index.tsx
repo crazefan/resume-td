@@ -1,12 +1,12 @@
 import React from "react";
-import Avatar from "../Avatar/";
+import PortraitAvatar from "../PortraitAvatar";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 const Title = () => {
   return (
     <Box display="flex" justifyContent="center">
-      <Avatar />
+      <PortraitAvatar />
       <Box>
         <Typography variant="h5">Timur Dolgopolov</Typography>
         <Typography
